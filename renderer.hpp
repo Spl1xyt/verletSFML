@@ -13,6 +13,8 @@ class Renderer {
     void render(Solver& solver, int fps){
       const auto& objects = solver.getObjects();
       std::string num_objects = std::to_string(objects.size());
+      sf::Font font("arial.ttf");
+      sf::Text text(font);
 
       // Display the particles
       sf::CircleShape circle(1.0f);
@@ -26,8 +28,6 @@ class Renderer {
       }
 
       // Display amount of particles in the simulations
-      sf::Font font("arial.ttf");
-      sf::Text text(font);
       text.setString("Objects : " + num_objects);
       text.setCharacterSize(20);
       text.setPosition({20.0f, 20.0f});
@@ -40,7 +40,6 @@ class Renderer {
       text.setPosition({20.0f, 40.0f});
       text.setFillColor(sf::Color::White);
       window.draw(text);
-
     }
 
   private:

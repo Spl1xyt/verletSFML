@@ -8,8 +8,8 @@
 
 int main()
 {
-  const int window_height = 840;
-  const int window_width = 840;
+  const int window_height = 1500;
+  const int window_width = 1500;
 
   sf::ContextSettings settings;
   settings.antiAliasingLevel = 1;

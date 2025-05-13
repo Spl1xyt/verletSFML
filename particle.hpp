@@ -10,14 +10,16 @@ struct Particle {
   sf::Vector2f acceleration;
   float mass = 1;
   float radius = 10.0f;
+  int id;
   sf::Color color = randomColor();
 
   Particle() = default;
-  Particle(sf::Vector2f position_, float radius_)
+  Particle(sf::Vector2f position_, float radius_, int id_)
     : position(position_)
     , prev_position(position_)
     , acceleration({0.0f, 0.0f})
     , radius(radius_)
+    , id(id_)
   {}
 
   
