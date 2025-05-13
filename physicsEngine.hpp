@@ -32,8 +32,8 @@ class Solver{
     }
 
   private:
-    const static int window_height   = 840;
-    const static int window_width    = 840;
+    const static int window_height   = 1500;
+    const static int window_width    = 1500;
     const static int grid_x          = window_width / 10.0f;
     const static int grid_y          = window_height / 10.0f;
 
@@ -101,11 +101,11 @@ class Solver{
         for (int j = 0; j < grid_y; j++){
           std::vector<Particle> neighbors = getNeighbors(i, j); 
           int num_objects = neighbors.size();
-          for (int k = 0; k < num_objects; k++){
-            Particle& obj_1 = objects[neighbors[k].id];
+          for (int k = 0; k < grid[i][j].size(); k++){
+            Particle& obj_1 = objects[grid[i][j][k]];
             for (int l = 0; l < num_objects; l++){
-              if (k != l){
-                Particle& obj_2 = objects[neighbors[l].id];
+              Particle& obj_2 = objects[neighbors[l].id];
+              if (obj_1.id != obj_2.id){
                 sf::Vector2f v = obj_2.position - obj_1.position; 
                 float dist = sqrt(v.x * v.x + v.y * v.y);
                 if (dist < obj_1.radius + obj_2.radius){
@@ -133,7 +133,7 @@ class Solver{
       for (auto& obj : objects){
         const int i = static_cast<int>(obj.position.x / 20.0f);
         const int j = static_cast<int>(obj.position.y / 20.0f);
-        if (i < 0 || i > grid_x || j < 0 || j > grid_y) continue;
+        if (i < 0 || i >= grid_x || j < 0 || j >= grid_y) continue;
         grid[i][j].push_back(obj.id);
       }
     }
